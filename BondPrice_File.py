@@ -1,14 +1,10 @@
 def getBondPrice(y, face, couponRate, m, ppy=1):
+    r = y / ppy
+    n = int(m * ppy)
+    c = face * couponRate / ppy
 
-    n = int(m * ppy)              # total number of periods
-    r = y / ppy                   # periodic yield
-    coupon = face * couponRate / ppy
-
-    bondPrice = 0
-
+    price = 0.0
     for t in range(1, n + 1):
-        bondPrice += coupon / ((1 + r) ** t)
-
-    bondPrice += face / ((1 + r) ** n)
-
-    return bondPrice
+        price += c / ((1 + r) ** t)
+    price += face / ((1 + r) ** n)
+    return price
